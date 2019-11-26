@@ -24,6 +24,7 @@ namespace Snake
         private Random random;
         private int width;
         private int height;
+        private int score;
 
         public Game(int width, int height)
         {
@@ -32,6 +33,7 @@ namespace Snake
             this.width = width;
             player = new SnakePlayer(new Point(width / 2 + 1, height / 2 + 1));
             elements = new Dictionary<Point, Food>();
+            score = 0;
         }
 
         public void NextStep()
@@ -41,6 +43,8 @@ namespace Snake
             if (elements.ContainsKey(head))
             {
                 var element = elements[head];
+                if (element.Equals(Food.Apple))
+                    score++;
                 player.EatFood(element);
                 elements.Remove(head);
             }
@@ -70,5 +74,7 @@ namespace Snake
         public bool IsGameFinish { get { return player.IsDead(width, height); } }
 
         public IEnumerable<Point> BodyOfPLayer { get { return player.GetBody(); } }
+
+        public int Score { get { return score; } } 
     }
 }

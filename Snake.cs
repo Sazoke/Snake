@@ -8,20 +8,6 @@ using System.Windows.Input;
 
 namespace Snake
 {
-    public enum Food
-    {
-        Apple,
-        Bomb
-    }
-
-    public enum Direction
-    {
-        Up = -2,
-        Down = 2,
-        Left = 1,
-        Right = -1
-    }
-
     public class SnakePlayer
     {
         private List<Point> body;
@@ -120,6 +106,11 @@ namespace Snake
                 return true;
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

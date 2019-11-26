@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums.cs" />
     <Compile Include="Tests\TestsOfSneak.cs" />
     <Compile Include="WindowGame.xaml.cs">
       <DependentUpon>WindowGame.xaml</DependentUpon>

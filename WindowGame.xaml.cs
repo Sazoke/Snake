@@ -19,6 +19,7 @@ namespace Snake
     {
         private Game game;
         private Uri uriOfSkin;
+        private System.Windows.Threading.DispatcherTimer timer;
         private int iteration = 0;
         private int size = 20;
         
@@ -31,10 +32,11 @@ namespace Snake
             uriOfSkin = GetUriOfSkin(skin);
             game = new Game((int)GridGame.Width / size, (int)GridGame.Height / size);
             CreateMap();
-            var timer = new System.Windows.Threading.DispatcherTimer();
+            timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = new TimeSpan(1000000);
             timer.Tick += (sender, e) => TickAction();
             timer.Start();
+            timer.Stop();
         }
 
         private Uri GetUriOfSkin(string skin)
@@ -63,7 +65,9 @@ namespace Snake
 
         private void GameOver()
         {
+            MessageBox.Show(game.Score.ToString());
             Close();
+            timer.Stop();
         }
 
         private void CreateMap()
