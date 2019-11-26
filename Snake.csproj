@@ -122,6 +122,12 @@
     <Resource Include="ImagesOfBonus\Apple.png" />
     <Resource Include="ImagesOfBonus\Bomb.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImagesOfBonus\Banana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImagesOfBonus\Brick.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

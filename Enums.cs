@@ -9,7 +9,9 @@ namespace Snake
     public enum Food
     {
         Apple,
-        Bomb
+        Bomb,
+        Banana,
+        Brick
     }
 
     public enum Direction

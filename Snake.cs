@@ -12,11 +12,13 @@ namespace Snake
     {
         private List<Point> body;
         private Direction direction;
+        public int Speed;
 
         public SnakePlayer(Point startPoint)
         {
             body = new List<Point>() { startPoint };
             direction = Direction.Up;
+            Speed = 2;
         }
 
         public void Move()
@@ -55,6 +57,17 @@ namespace Snake
                 case Food.Bomb:
                     {
                         body.RemoveAt(0);
+                        break;
+                    }
+                case Food.Banana:
+                    {
+                        Speed += 1;
+                        break;
+                    }
+                case Food.Brick:
+                    {
+                        if (Speed == 1) break;
+                        Speed -= 1;
                         break;
                     }
                 default:

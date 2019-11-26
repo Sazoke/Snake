@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Snake
 {
@@ -36,7 +29,6 @@ namespace Snake
             timer.Interval = new TimeSpan(1000000);
             timer.Tick += (sender, e) => TickAction();
             timer.Start();
-            timer.Stop();
         }
 
         private Uri GetUriOfSkin(string skin)
@@ -44,20 +36,32 @@ namespace Snake
             var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             for (int i = 0; i < 2; i++)
                 directory = directory.Parent;
-            return new Uri(System.IO.Path.Combine(directory.FullName, "Images/" + skin + ".png"));
+            return new Uri(Path.Combine(directory.FullName, "Images/" + skin + ".png"));
         }
 
         private void TickAction()
         {
-            if (iteration == 10)
-                game.SpawnFood(Food.Apple);
-            if (iteration == 20)
+            switch (iteration)
             {
-                game.SpawnFood(Food.Bomb);
-                iteration = 0;
+                case 10:
+                    game.SpawnFood(Food.Apple);
+                    break;
+                case 20:
+                    game.SpawnFood(Food.Banana);
+                    break;
+                case 30:
+                    game.SpawnFood(Food.Brick);
+                    break;
+                case 40:
+                    game.SpawnFood(Food.Bomb);
+                    iteration = 0;
+                    break;
+                default:
+                    break;
             }
             iteration++;
-            game.NextStep();
+            if(iteration % (10 / game.Speed) == 0)
+                game.NextStep();
             if (game.IsGameFinish)
                 GameOver();
             CreateMap();
@@ -78,6 +82,7 @@ namespace Snake
             foreach (var element in game.Elements)
                 AddImageToGrid(element.Key, element.Value.ToString());
         }
+
         private void AddImageToGrid(System.Drawing.Point point, string skin = null)
         {
             var image = new Image();

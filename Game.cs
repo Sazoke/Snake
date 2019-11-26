@@ -76,5 +76,7 @@ namespace Snake
         public IEnumerable<Point> BodyOfPLayer { get { return player.GetBody(); } }
 
         public int Score { get { return score; } } 
+
+        public int Speed { get { return player.Speed; } }
     }
 }
