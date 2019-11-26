@@ -60,7 +60,7 @@ namespace Snake
             var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             for (int i = 0; i < 2; i++)
                 directory = directory.Parent;
-            directory = directory.GetDirectories()[2];
+            directory = directory.GetDirectories().Where(n => n.Name == "Images").FirstOrDefault();
             var files = directory.GetFiles();
             var names = files.Select(n => n.Name.Split('.').First());
             return names.ToList();
